@@ -1,0 +1,119 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3394,        109]
+NotebookOptionsPosition[      2980,         90]
+NotebookOutlinePosition[      3314,        105]
+CellTagsIndexPosition[      3271,        102]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"NMinimize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"y1", "\[Equal]", " ", 
+      RowBox[{
+       RowBox[{"20", "*", "t1"}], " ", "+", " ", 
+       RowBox[{"50", "*", "t2"}]}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "==", 
+        RowBox[{"t1", "+", "t2"}]}], ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"t1", ",", "t2"}], "}"}], "\[GreaterEqual]", " ", "0"}]}], 
+      "}"}]}], " ", "}"}], ",", " ", "y1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6706535854857492`*^9, 3.670653691273795*^9}, {
+   3.670653735247106*^9, 3.670653762409638*^9}, 3.670653827369151*^9, {
+   3.6706538795738792`*^9, 3.670653940485689*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NMinimize", "::", "bcons"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The following constraints are not valid: \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"1\\\", \\\"\[Equal]\
+\\\", RowBox[{\\\"t1\\\", \\\"+\\\", \\\"t2\\\"}]}], \\\",\\\", \
+RowBox[{\\\"t1\\\", \\\"\[GreaterEqual]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{\
+\\\"t2\\\", \\\"\[GreaterEqual]\\\", \\\"0\\\"}]}], \\\"}\\\"}]\\)\[NoBreak]. \
+Constraints should be equalities, inequalities, or domain specifications \
+involving the variables. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NMinimize/bcons\\\", ButtonNote -> \
+\\\"NMinimize::bcons\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.670653832077821*^9, {3.6706538934717007`*^9, 3.6706539111108*^9}, 
+   3.670653941581196*^9}],
+
+Cell[BoxData[
+ RowBox[{"NMinimize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"y1", "\[Equal]", 
+      RowBox[{
+       RowBox[{"20", " ", "t1"}], "+", 
+       RowBox[{"50", " ", "t2"}]}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "\[Equal]", 
+        RowBox[{"t1", "+", "t2"}]}], ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"t1", ",", "t2"}], "}"}], "\[GreaterEqual]", "0"}]}], 
+      "}"}]}], "}"}], ",", "y1"}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.6706538320786457`*^9, {3.670653893472951*^9, 3.670653911111803*^9}, 
+   3.670653941582447*^9}]
+}, Open  ]],
+
+Cell[BoxData["\[AliasDelimiter]"], "Input",
+ CellChangeTimes->{3.6706540412598257`*^9}],
+
+Cell[BoxData["x"], "Input",
+ CellChangeTimes->{3.670653859444707*^9}]
+},
+WindowSize->{1364, 744},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Linux x86 (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 701, 19, 32, "Input"],
+Cell[1284, 43, 910, 17, 23, "Message"],
+Cell[2197, 62, 605, 19, 32, "Output"]
+}, Open  ]],
+Cell[2817, 84, 87, 1, 32, "Input"],
+Cell[2907, 87, 69, 1, 32, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
