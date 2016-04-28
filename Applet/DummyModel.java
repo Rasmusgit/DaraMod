@@ -6,35 +6,42 @@ public class DummyModel implements IBouncingBallsModel {
 
 	private final double areaWidth;
 	private final double areaHeight;
+	private List<Balls> myBalls;
 
-	private double x, y, vx, vy, r;
+	private double g;
 
 	public DummyModel(double width, double height) {
 		this.areaWidth = width;
 		this.areaHeight = height;
-		x = 1;
-		y = 1;
-		vx = 2.3;
-		vy = 1;
-		r = 1;
+		myBalls = new LinkedList<Balls>();
+
+		g = 9.8;
+
+		myBalls.add(new Balls(width/2,height-3,2.3,0,1,0.1));
+
 	}
 
 	@Override
 	public void tick(double deltaT) {
-		if (x < r || x > areaWidth - r) {
-			vx *= -1;
+		for (Balls b : this.getBalls()) {
+
+		if (b.x < b.r || b.x > areaWidth - b.r) {
+			b.vx *= -1;
 		}
-		if (y < r || y > areaHeight - r) {
-			vy *= -1;
+		if (b.y < b.r || b.y > areaHeight - b.r) {
+			b.vy *= -1;
+		}else{
+			b.vy -= b.m * g;
 		}
-		x += vx * deltaT;
-		y += vy * deltaT;
+
+		b.x += b.vx * deltaT;
+		b.y += b.vy * deltaT;
+
+		}
 	}
 
 	@Override
-	public List<Ellipse2D> getBalls() {
-		List<Ellipse2D> myBalls = new LinkedList<Ellipse2D>();
-		myBalls.add(new Ellipse2D.Double(x - r, y - r, 2 * r, 2 * r));
+	public List<Balls> getBalls() {
 		return myBalls;
 	}
 }

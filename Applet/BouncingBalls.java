@@ -31,17 +31,17 @@ public final class BouncingBalls extends Animator {
 	@Override
 	protected void drawFrame(Graphics2D g) {
 		// Clear the canvas
-		g.setColor(Color.WHITE);
+		g.setColor(Color.darkGray);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		// Update the model
 		model.tick(deltaT);
-		List<Ellipse2D> balls = model.getBalls();
+		List<Balls> balls = model.getBalls();
 		// Transform balls to fit canvas
-		g.setColor(Color.RED);
+		g.setColor(Color.cyan);
 		g.scale(PIXELS_PER_METER, -PIXELS_PER_METER);
 		g.translate(0, -modelHeight);
-		for (Ellipse2D b : balls) {
-			g.fill(b);
+		for (Balls b : balls) {
+			g.fill(b.getBall());
 		}
 	}
 
