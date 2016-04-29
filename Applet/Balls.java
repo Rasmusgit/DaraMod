@@ -4,7 +4,7 @@ import java.awt.geom.Ellipse2D;
  * Created by Rasmus on 2016-04-28.
  */
 public class Balls {
-    protected double x, y, vx, vy, r,m;
+    protected double x, y, vx, vy, r ,m;
 
 
     public Ellipse2D getBall(){
@@ -23,4 +23,6 @@ public class Balls {
         this.r = r;//size
         this.m = m;//mass
     }
+
+    public double getRadius(){ return r; }
 }
