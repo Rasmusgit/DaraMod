@@ -15,8 +15,8 @@ public class DummyModel implements IBouncingBallsModel {
 		this.areaHeight = height;
 		myBalls = new LinkedList<Balls>();
 		g = 9.8;
-		myBalls.add(new Balls(width/2, height-3, 5 , 0, 1, 1));
-		myBalls.add(new Balls(width/4, height-3, 2.3 , 0, 1, 0.1));
+		myBalls.add(new Balls(width/2, height-1, 2 , 0, 1, 1));
+		myBalls.add(new Balls(width/2, height-3, 0 , 0, 1, 2));
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class DummyModel implements IBouncingBallsModel {
 			if (b.y < b.r || b.y > areaHeight - b.r) {
 				b.vy *= -1;
 			} else {
-				b.vy -= g;
+				b.vy -= g* deltaT;
 			}
 			b.x += b.vx * deltaT;
 			b.y += b.vy * deltaT;
@@ -51,17 +51,17 @@ public class DummyModel implements IBouncingBallsModel {
 	private void collision(Balls ball1, Balls ball2){
 		double m1 = ball1.m;
 		double m2 = ball2.m;
-		double ix = ball1.m*ball1.vx + ball2.m*ball2.vx;
-		double iy = ball1.m*ball1.vy + ball2.m*ball2.vy;
-		double rx = -(ball2.vx - ball1.vx);
-		double ry = -(ball2.vy - ball1.vy);
-		double deltaVx1 = (ix - m2*rx)/(m1+m2);
-		double deltaVx2 = (rx + deltaVx1);
-		double deltaVy1 = (iy - m2*ry)/(m1+m2);
-		double deltaVy2 = (ry + deltaVy1);
-		ball1.vx = deltaVx1;
-		ball1.vy = deltaVy1;
-		ball2.vx = deltaVx2;
-		ball2.vy = deltaVy2;
+
+		double ux1 = (ball1.vx*(m1-m2)+(2*m2*ball2.vx))/(m1 +m2) ;
+		double uy1 = (ball1.vy*(m1-m2)+(2*m2*ball2.vy))/(m1 +m2) ;
+
+		double ux2 = (ball2.vx*(m2-m1)+(2*m2*ball1.vx))/(m1 +m2) ;
+		double uy2 = (ball2.vy*(m2-m1)+(2*m2*ball1.vy))/(m1 +m2) ;
+
+
+		ball1.vx = ux1;
+		ball1.vy = uy1;
+		ball2.vx = ux2;
+		ball2.vy = uy2;
 	}
 }
