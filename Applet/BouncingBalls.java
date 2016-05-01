@@ -34,7 +34,7 @@ public final class BouncingBalls extends Animator {
 		g.setColor(Color.darkGray);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		// Update the model
-		model.tick(deltaT/2);
+		model.tick(deltaT);
 		List<Balls> balls = model.getBalls();
 		// Transform balls to fit canvas
 		g.setColor(Color.cyan);
