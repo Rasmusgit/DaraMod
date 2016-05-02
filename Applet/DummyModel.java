@@ -58,6 +58,10 @@ public class DummyModel implements IBouncingBallsModel {
 		return(distance < (myBalls.get(0).getRadius() + myBalls.get(1).getRadius()));
 	}
 	private void collision(Balls ball1, Balls ball2){
+		// Distance hack
+		double dist = Math.sqrt(Math.pow((ball1.y - ball2.y) ,2)+Math.pow((ball1.x - ball2.x),2));
+		ball2.x = ball2.x + (ball2.x - ball1.x)*(ball1.r-ball2.r)/dist;
+		ball2.y = ball2.y + (ball2.y - ball1.y)*(ball1.r-ball2.r)/dist;
 		//calculates angles needed for transferring system
 		double angle = Math.atan((ball1.y - ball2.y)/(ball1.x - ball2.x));
 		double sine = Math.sin(angle);
