@@ -27,12 +27,19 @@ public class DummyModel implements IBouncingBallsModel {
 			collision(myBalls.get(0), myBalls.get(1));
 		}
 		for (Balls b : this.getBalls()) {
-			if (b.x < b.r || b.x > areaWidth - b.r) {
+			if (b.x < b.r) {
+				b.x = b.r;
 				b.vx *= -1;
-			}
-			if (b.y < b.r || b.y > areaHeight - b.r) {
+			}else if( b.x > areaWidth - b.r){
+				b.x = areaWidth - b.r;
+				b.vx *= -1;
+			}else if (b.y > areaHeight - b.r){
+				b.y = areaHeight - b.r;
 				b.vy *= -1;
-			} else {
+			}else if (b.y < b.r){
+				b.y = b.r;
+				b.vy *= -1;
+			}else {
 				b.vy -= g* deltaT;
 			}
 			b.x += b.vx * deltaT;
@@ -51,7 +58,7 @@ public class DummyModel implements IBouncingBallsModel {
 		return(distance < (myBalls.get(0).getRadius() + myBalls.get(1).getRadius()));
 	}
 	private void collision(Balls ball1, Balls ball2){
-		//calculates angles needed for transfering system
+		//calculates angles needed for transferring system
 		double angle = Math.atan((ball1.y - ball2.y)/(ball1.x - ball2.x));
 		double sine = Math.sin(angle);
 		double cosine = Math.cos(angle);
