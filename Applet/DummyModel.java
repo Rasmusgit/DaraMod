@@ -8,6 +8,7 @@ public class DummyModel implements IBouncingBallsModel {
 	private final double areaHeight;
 	private List<Balls> myBalls;
 	private double deltaT;
+	private boolean collisionHack = true;
 
 	private double g;
 
@@ -23,9 +24,10 @@ public class DummyModel implements IBouncingBallsModel {
 	@Override
 	public void tick(double deltaT) {
 		this.deltaT = deltaT;
-		if(checkCollision()) {
+		if(checkCollision() && collisionHack) {
 			collision(myBalls.get(0), myBalls.get(1));
 		}
+		if(!collisionHack) {collisionHack = true;}
 		for (Balls b : this.getBalls()) {
 			if (b.x < b.r) {
 				b.x = b.r;
@@ -58,14 +60,11 @@ public class DummyModel implements IBouncingBallsModel {
 		return(distance < (myBalls.get(0).getRadius() + myBalls.get(1).getRadius()));
 	}
 	private void collision(Balls ball1, Balls ball2){
-		// Distance hack
-		double dist = Math.sqrt(Math.pow((ball1.y - ball2.y) ,2)+Math.pow((ball1.x - ball2.x),2));
-		ball2.x = ball2.x + (ball2.x - ball1.x)*(ball1.r-ball2.r)/dist;
-		ball2.y = ball2.y + (ball2.y - ball1.y)*(ball1.r-ball2.r)/dist;
 		//calculates angles needed for transferring system
 		double angle = Math.atan((ball1.y - ball2.y)/(ball1.x - ball2.x));
 		double sine = Math.sin(angle);
 		double cosine = Math.cos(angle);
+
 		//transfers to new coordinate system
 		double[] vTemp = new double[4]; //ball1.vx, ball1.vy, ball2.vx, ball2,vy
 		vTemp[0] = cosine * ball1.vx + sine * ball1.vy;
@@ -83,5 +82,8 @@ public class DummyModel implements IBouncingBallsModel {
 		ball1.vy = cosine * vFinal[1] + sine * vFinal[0];
 		ball2.vx = cosine * vFinal[2] - sine * vFinal[3];
 		ball2.vy = cosine * vFinal[3] + sine * vFinal[2];
+
+		collisionHack = false; //Hack to avoid
+		tick(deltaT);
 	}
 }
