@@ -15,7 +15,7 @@ public class DummyModel implements IBouncingBallsModel {
 	public DummyModel(double width, double height) {
 		this.areaWidth = width;
 		this.areaHeight = height;
-		myBalls = new LinkedList<Balls>();
+		myBalls = new LinkedList<>();
 		g = 9.8;
 		myBalls.add(new Balls(width/3, height-5, 2 , 0, 1.5, 1));
 		myBalls.add(new Balls(width/2, height/3, 0 , 0, 1, 2));
@@ -64,7 +64,12 @@ public class DummyModel implements IBouncingBallsModel {
 		double angle = Math.atan((ball1.y - ball2.y)/(ball1.x - ball2.x));
 		double sine = Math.sin(angle);
 		double cosine = Math.cos(angle);
-
+		/*
+		// Seems to be the best hack to avoid clumping but makes the collisions seem like the are lagging
+		double dist = Math.sqrt(Math.pow((ball1.y - ball2.y) ,2)+Math.pow((ball1.x - ball2.x),2));
+		ball2.x = ball2.x + (ball2.x - ball1.x)*(ball1.r-ball2.r)/dist;
+		ball2.y = ball2.y + (ball2.y - ball1.y)*(ball1.r-ball2.r)/dist;
+		*/
 		//transfers to new coordinate system
 		double[] vTemp = new double[4]; //ball1.vx, ball1.vy, ball2.vx, ball2,vy
 		vTemp[0] = cosine * ball1.vx + sine * ball1.vy;
@@ -83,7 +88,7 @@ public class DummyModel implements IBouncingBallsModel {
 		ball2.vx = cosine * vFinal[2] - sine * vFinal[3];
 		ball2.vy = cosine * vFinal[3] + sine * vFinal[2];
 
-		collisionHack = false; //Hack to avoid
+		collisionHack = false; //Hack to avoid clumping
 		tick(deltaT);
 	}
 }
